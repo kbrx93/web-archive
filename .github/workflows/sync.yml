@@ -1,0 +1,20 @@
+# .github/workflows/sync.yml
+name: Sync Fork
+
+on:
+  push: # push 时触发, 主要是为了测试配置有没有问题
+  workflow_dispatch: # 按钮点击
+  schedule:
+    - cron: '0 3 * * *' # 每天 3：00 触发
+
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: tgymnich/fork-sync@v2.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repo: web-archive # fork 上游仓库名
+          owner: Ray-D-Song # fork 的上游仓库 user
+          head: main # fork 的上游仓库 branch
+          base: main # 本地仓库 branch
