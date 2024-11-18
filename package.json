@@ -24,7 +24,10 @@
     "build:plugin": "pnpm --filter=plugin build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prepare": "husky"
+    "prepare": "husky",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -54,6 +57,7 @@
     "recharts": "^2.13.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
+    "vitepress": "^1.5.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
