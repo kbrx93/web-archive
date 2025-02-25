@@ -1,9 +1,10 @@
 import { Hono } from 'hono'
 import { validator } from 'hono/validator'
 import { isNil, isNotNil, isNumberString } from '@web-archive/shared/utils'
+import { z } from 'zod'
 import type { HonoTypeUserInformation } from '~/constants/binding'
 import result from '~/utils/result'
-import { clearDeletedPage, deletePageById, getPageById, insertPage, queryDeletedPage, queryPage, queryRecentSavePage, restorePage, selectPageTotalCount, updatePage } from '~/model/page'
+import { clearDeletedPage, deletePageById, getPageById, insertPage, queryAllPageIds, queryDeletedPage, queryPage, queryPageByUrl, queryRecentSavePage, restorePage, selectPageTotalCount, updatePage } from '~/model/page'
 import { getFolderById, restoreFolder } from '~/model/folder'
 import { getFileFromBucket, saveFileToBucket } from '~/utils/file'
 import { updateShowcase } from '~/model/showcase'
@@ -127,6 +128,57 @@ app.post(
       selectPageTotalCount(c.env.DB, { folderId, keyword, tagId }),
     ])
     return c.json(result.success({ list: pages, total }))
+  },
+)
+
+app.post(
+  '/query_all_page_ids',
+  validator('json', (value, c) => {
+    const schema = z.object({
+      folderId: z.number({
+        message: 'Folder ID should be a number',
+      }),
+    })
+
+    const parsed = schema.safeParse(value)
+    if (!parsed.success) {
+      return c.json(result.error(400, parsed.error.errors[0].message))
+    }
+
+    return parsed.data
+  }),
+  async (c) => {
+    const { folderId } = c.req.valid('json')
+    const pages = await queryAllPageIds(c.env.DB, folderId)
+
+    return c.json(result.success(pages))
+  },
+)
+
+app.post(
+  '/query_by_url',
+  validator('json', (value, c) => {
+    const errorMsg = {
+      message: 'Page URL is required',
+    }
+    const schema = z.object({
+      pageUrl: z.string(errorMsg).min(1, errorMsg),
+    })
+
+    const parsed = schema.safeParse(value)
+    if (!parsed.success) {
+      if (parsed.error.errors.length > 0) {
+        return c.json(result.error(400, parsed.error.errors[0].message))
+      }
+      return c.json(result.error(400, 'Invalid request'))
+    }
+
+    return parsed.data
+  }),
+  async (c) => {
+    const { pageUrl } = c.req.valid('json')
+    const pages = await queryPageByUrl(c.env.DB, pageUrl)
+    return c.json(result.success(pages))
   },
 )
 
