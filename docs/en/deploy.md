@@ -1,19 +1,20 @@
-## Github Actions
+## ~~Github Actions~~
 
-[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/ray-d-song/web-archive)  
+> [!WARNING]
+> Due to changes in Cloudflare, the one-click deployment feature is temporarily unavailable. Please use command deployment.
 
-Click the button above, follow the instructions of Cloudflare to complete the deployment.  
+~~Click the button above, follow the instructions of Cloudflare to complete the deployment. )~~ 
 
-> [!IMPORTANT]  
-> R2 storage bucket is a feature that needs to be manually enabled in the Cloudflare panel, please enable it before deployment or re-run Github Actions after failure.
-> You only need to enable the R2 feature, no need to create a storage bucket, the storage bucket will be created automatically during deployment.  
+>[!IMPORTANT] 
+> ~~R2 storage bucket is a feature that needs to be manually enabled in the Cloudflare panel, please enable it before deployment or re-run Github Actions after failure.~~
+> ~~You only need to enable the R2 feature, no need to create a storage bucket, the storage bucket will be created automatically during deployment. ~~
 
-> [!NOTE]  
-> When creating a token, select the `Edit Cloudflare Workers` template directly, and then manually add the `D1 Edit` permission.
+> [!NOTE]
+> ~~When creating a token, select the `Edit Cloudflare Workers` template directly, and then manually add the `D1 Edit` permission.~~
 
 ![permissions](https://raw.githubusercontent.com/ray-d-song/web-archive/main/docs/imgs/perm.png)  
 
-Once deployed, please login as soon as possible, the first user to login will be set as the administrator.
+~~Once deployed, please login as soon as possible, the first user to login will be set as the administrator.~~
 
 ## Command Deploy
 

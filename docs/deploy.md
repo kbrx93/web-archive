@@ -1,19 +1,20 @@
-## Github Actions 一键部署(推荐)  
+## ~~Github Actions 一键部署~~
+> [!WARNING]
+> 由于 Cloudflare 的变动，一键部署功能暂时不可用。请使用命令部署。
 
-[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/ray-d-song/web-archive)  
 
-点击上面的按钮，按照 Cloudflare 的指引完成部署。  
+~~点击上面的按钮，按照 Cloudflare 的指引完成部署。~~
 
-> [!IMPORTANT]  
-> R2 存储桶是需要在 Cloudflare 面板上手动开通的功能，请开通后再进行部署或者失败后 re-run Github Actions。
-> 仅需开通 R2 功能，不需要创建存储桶，存储桶会在部署时自动创建。
+> [!IMPORTANT]
+> ~~R2 存储桶是需要在 Cloudflare 面板上手动开通的功能，请开通后再进行部署或者失败后 re-run Github Actions。~~
+> ~~仅需开通 R2 功能，不需要创建存储桶，存储桶会在部署时自动创建。~~
 
-> [!NOTE]  
-> 创建令牌时，直接选择 `编辑 Cloudflare Workers` 模版，再手动添加 `D1 编辑` 权限。
+> [!NOTE]
+> ~~创建令牌时，直接选择 `编辑 Cloudflare Workers` 模版，再手动添加 `D1 编辑` 权限。~~
 
 ![permissions](https://raw.githubusercontent.com/ray-d-song/web-archive/main/docs/imgs/perm_zh.png)
 
-部署后请尽快登录，首个登录的用户会被设置为管理员。
+~~部署后请尽快登录，首个登录的用户会被设置为管理员。~~
 
 ## 命令部署
 
