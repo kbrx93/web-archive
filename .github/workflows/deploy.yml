@@ -43,7 +43,8 @@ jobs:
 
           if [ -z "$DB_ID" ]; then
             CREATE_OUTPUT=$(wrangler d1 create web-archive)
-            DB_ID=$(echo "$CREATE_OUTPUT" | sed -n 's/.*database_id = "\([^"]*\)".*/\1/p')
+            JSON_OUTPUT=$(echo "$CREATE_OUTPUT" | sed -n '/^{/,$p')
+            DB_ID=$(echo "$JSON_OUTPUT" | jq -r '.d1_databases[0].database_id')
           else
             echo "Found existing web-archive database"
           fi
